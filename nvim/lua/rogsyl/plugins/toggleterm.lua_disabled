@@ -1,0 +1,25 @@
+return {
+	"akinsho/toggleterm.nvim",
+	version = "*",
+	config = function()
+		require("toggleterm").setup()
+
+		local km = vim.keymap -- for conciseness
+
+		--		km.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+
+		local opts = { buffer = 0 }
+		--    km.set("n", "<C-t>", )
+		km.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+		km.set("t", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+		km.set("t", "<esc>", [[<C-\><C-n>]], opts)
+		km.set("t", "jk", [[<C-\><C-n>]], opts)
+		km.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+		km.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+		km.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+		km.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+		km.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+		-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+		--vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+	end,
+}

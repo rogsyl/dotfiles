@@ -1,0 +1,475 @@
+-- sjaddow Color Scheme
+local vim = vim
+
+vim.o.background = "dark"
+
+-- Gui
+local sjaddow00 = "#080808" -- "#29223a"
+local sjaddow01 = "#101010" -- "#3e3350"
+local sjaddow02 = "#121212" -- "#534666"
+local sjaddow03 = "#6b5c7c" -- "#6b5c7c"
+local sjaddow04 = "#837593" -- "#837593"
+local sjaddow05 = "#9d8fa9" -- "#9d8fa9"
+local sjaddow06 = "#b7acbf" -- "#b7acbf"
+local sjaddow07 = "#d2ccd6" -- "#d2ccd6"
+local sjaddow08 = "#a42856" -- "#f63d81"
+local sjaddow09 = "#a84274" -- "#fc65b0"
+local sjaddow10 = "#a26268" -- "#f5939c"
+local sjaddow11 = "#9a9c4e" -- "#e8ec77"
+local sjaddow12 = "#1e8674" -- "#2dcbb0"
+local sjaddow13 = "#3a7ca2" -- "#57bbf4"
+local sjaddow14 = "#70669e" -- "#a89bee"
+local sjaddow15 = "#327a84" -- "#4db9c8"
+-- Term
+local black = "0"
+local red = "1"
+local green = "2"
+local yellow = "3"
+local blue = "4"
+local magenta = "5"
+local cyan = "6"
+local white = "7"
+local lightBlack = "8"
+local lightRed = "9"
+local lightGreen = "10"
+local lightYellow = "11"
+local lightBlue = "12"
+local lightMagenta = "13"
+local lightCyan = "14"
+local lightWhite = "15"
+
+local term_colors = {
+	terminal_color_0 = sjaddow01,
+	terminal_color_1 = sjaddow08,
+	terminal_color_2 = sjaddow12,
+	terminal_color_3 = sjaddow11,
+	terminal_color_4 = sjaddow13,
+	terminal_color_5 = sjaddow14,
+	terminal_color_6 = sjaddow15,
+	terminal_color_7 = sjaddow06,
+	terminal_color_8 = sjaddow02,
+	terminal_color_9 = sjaddow08,
+	terminal_color_10 = sjaddow12,
+	terminal_color_11 = sjaddow11,
+	terminal_color_12 = sjaddow13,
+	terminal_color_13 = sjaddow14,
+	terminal_color_14 = sjaddow15,
+	terminal_color_15 = sjaddow07,
+}
+
+for color, value in pairs(term_colors) do
+	vim.g[color] = value
+end
+
+-- Source: https://github.com/norcalli/nvim_utils
+local function highlight(group, guifg, guibg, ctermfg, ctermbg, attr, guisp)
+	local parts = { group }
+	if guifg then
+		table.insert(parts, "guifg=" .. guifg)
+	end
+	if guibg then
+		table.insert(parts, "guibg=" .. guibg)
+	end
+	if ctermfg then
+		table.insert(parts, "ctermfg=" .. ctermfg)
+	end
+	if ctermbg then
+		table.insert(parts, "ctermbg=" .. ctermbg)
+	end
+	if attr then
+		table.insert(parts, "gui=" .. attr)
+		table.insert(parts, "cterm=" .. attr)
+	end
+	if guisp then
+		table.insert(parts, "guisp=" .. guisp)
+	end
+	vim.api.nvim_command("highlight " .. table.concat(parts, " "))
+end
+
+-- ___UI COMPONENTS___
+-- ( :so $VIMRUNTIME/syntax/hitest.vim )
+
+-- ATTRIBUTES
+highlight("Bold", nil, nil, nil, nil, "bold", nil)
+highlight("Italic", nil, nil, nil, nil, "italic", nil)
+highlight("Underline", nil, nil, nil, nil, "underline", nil)
+
+-- EDITOR
+highlight("ColorColumn", nil, sjaddow01, "NONE", black, nil, nil)
+highlight("Cursor", sjaddow00, sjaddow06, nil, "NONE", nil, nil)
+highlight("CursorLine", nil, sjaddow01, "NONE", black, "NONE", nil)
+highlight("Error", sjaddow08, sjaddow00, nil, red, nil, nil)
+highlight("iCursor", sjaddow00, sjaddow05, nil, "NONE", nil, nil)
+highlight("LineNr", sjaddow02, sjaddow00, lightBlack, "NONE", nil, nil)
+highlight("MatchParen", sjaddow12, sjaddow02, green, lightBlack, nil, nil)
+highlight("NonText", sjaddow02, nil, lightBlack, nil, nil, nil)
+highlight("Normal", sjaddow07, sjaddow00, "NONE", "NONE", nil, nil)
+highlight("PMenu", sjaddow05, sjaddow01, "NONE", black, "NONE", nil)
+highlight("PmenuSbar", sjaddow05, sjaddow02, "NONE", black, nil, nil)
+highlight("PMenuSel", sjaddow01, sjaddow12, lightCyan, lightBlack, nil, nil)
+highlight("PmenuThumb", sjaddow12, sjaddow02, "NONE", lightBlack, nil, nil)
+highlight("SpecialKey", sjaddow04, nil, lightBlack, nil, nil, nil)
+highlight("SpellBad", sjaddow08, sjaddow00, red, "NONE", "undercurl", sjaddow08)
+highlight("SpellCap", sjaddow09, sjaddow00, yellow, "NONE", "undercurl", sjaddow09)
+highlight("SpellLocal", sjaddow10, sjaddow00, yellow, "NONE", "undercurl", sjaddow10)
+highlight("SpellRare", sjaddow11, sjaddow00, yellow, "NONE", "undercurl", sjaddow11)
+highlight("Visual", nil, sjaddow01, nil, black, nil, nil)
+highlight("VisualNOS", nil, sjaddow03, nil, black, nil, nil)
+
+-- NEOVIM SUPPORT
+highlight("healthError", sjaddow08, sjaddow00, red, black, nil, nil)
+highlight("healthSuccess", sjaddow12, sjaddow00, green, black, nil, nil)
+highlight("healthWarning", sjaddow11, sjaddow00, yellow, black, nil, nil)
+highlight("TermCursorNC", nil, sjaddow01, nil, black, nil, nil)
+
+-- GUTTER
+highlight("CursorColumn", nil, sjaddow01, "NONE", black, nil, nil)
+highlight("CursorLineNr", sjaddow05, sjaddow00, "NONE", nil, nil, nil)
+highlight("Folded", sjaddow04, sjaddow01, lightBlack, black, "bold", nil)
+highlight("FoldColumn", sjaddow03, sjaddow00, lightBlack, "NONE", nil, nil)
+highlight("SignColumn", sjaddow01, sjaddow00, black, "NONE", nil, nil)
+
+-- NAVIGATION
+highlight("Directory", sjaddow12, nil, cyan, "NONE", nil, nil)
+
+-- PROMPT / STATUS
+highlight("EndOfBuffer", sjaddow01, nil, black, "NONE", nil, nil)
+highlight("ErrorMsg", sjaddow00, sjaddow08, "NONE", red, nil, nil)
+highlight("ModeMsg", sjaddow04, nil, nil, nil, nil, nil)
+highlight("MoreMsg", sjaddow04, nil, nil, nil, nil, nil)
+highlight("Question", sjaddow04, nil, "NONE", nil, nil, nil)
+highlight("StatusLine", sjaddow05, sjaddow01, lightWhite, lightBlack, "NONE", nil)
+highlight("StatusLineNC", sjaddow03, sjaddow01, "NONE", black, "NONE", nil)
+highlight("StatusLineTerm", sjaddow05, sjaddow01, lightWhite, lightBlack, "NONE", nil)
+highlight("StatusLineTermNC", sjaddow03, sjaddow01, "NONE", black, "NONE", nil)
+highlight("WarningMsg", sjaddow00, sjaddow11, black, yellow, nil, nil)
+highlight("WildMenu", sjaddow11, sjaddow01, yellow, black, nil, nil)
+
+-- SEARCH
+highlight("IncSearch", sjaddow01, sjaddow11, black, yellow, "underline", nil)
+highlight("Search", sjaddow01, sjaddow13, black, blue, "NONE", nil)
+
+-- TABS
+highlight("TabLine", sjaddow04, sjaddow01, "NONE", black, "NONE", nil)
+highlight("TabLineFill", sjaddow04, sjaddow01, "NONE", black, "NONE", nil)
+highlight("TabLineSel", sjaddow00, sjaddow13, lightWhite, lightBlack, "NONE", nil)
+
+-- WINDOW
+highlight("Title", sjaddow04, nil, "NONE", nil, "NONE", nil)
+highlight("VertSplit", sjaddow01, sjaddow00, lightBlack, black, "NONE", nil)
+
+-- DIFF
+highlight("DiffAdd", sjaddow12, sjaddow00, green, "NONE", "inverse", nil)
+highlight("DiffChange", sjaddow11, sjaddow00, yellow, "NONE", "inverse", nil)
+highlight("DiffDelete", sjaddow08, sjaddow00, red, "NONE", "inverse", nil)
+highlight("DiffText", sjaddow13, sjaddow00, blue, "NONE", "inverse", nil)
+-- Legacy groups for official git.vim and diff.vim syntax
+highlight("diffAdded", sjaddow12, sjaddow00, green, "NONE", "inverse", nil)
+highlight("diffChanged", sjaddow11, sjaddow00, yellow, "NONE", "inverse", nil)
+highlight("diffRemoved", sjaddow08, sjaddow00, red, "NONE", "inverse", nil)
+
+-- QUICKFIX / LOCATION LIST
+highlight("qfLineNr", sjaddow06, nil, "NONE", nil, nil, nil)
+
+-- NEOVIM LSP
+highlight("LspDiagnosticsDefaultError", sjaddow08, nil, nil, red, nil, nil)
+highlight("LspDiagnosticsDefaultWarning", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("LspDiagnosticsDefaultInformation", sjaddow13, nil, nil, blue, nil, nil)
+highlight("LspDiagnosticsDefaultHint", sjaddow12, nil, nil, green, nil, nil)
+
+-- ___LANGUAGE BASE GROUPS___
+-- ( :help w18 )
+
+highlight("Comment", sjaddow03, nil, lightBlack, nil, "italic", nil)
+
+highlight("Constant", sjaddow09, nil, "NONE", nil, nil, nil)
+highlight("String", sjaddow14, nil, magenta, nil, "italic", nil)
+highlight("Character", sjaddow09, nil, red, nil, nil, nil)
+highlight("Number", sjaddow08, nil, magenta, nil, nil, nil)
+highlight("Boolean", sjaddow12, nil, green, nil, nil, nil)
+highlight("Float", sjaddow10, nil, magenta, nil, nil, nil)
+
+highlight("Identifier", sjaddow13, nil, blue, nil, "NONE", nil)
+highlight("Function", sjaddow12, nil, cyan, nil, nil, nil)
+
+highlight("Statement", sjaddow14, nil, magenta, nil, "NONE", nil)
+highlight("Conditional", sjaddow13, nil, blue, nil, nil, nil)
+highlight("Repeat", sjaddow14, nil, magenta, nil, nil, nil)
+highlight("Label", sjaddow08, nil, red, nil, nil, nil)
+highlight("Operator", sjaddow13, nil, blue, nil, "NONE", nil)
+highlight("Keyword", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("Exception", sjaddow08, nil, red, nil, nil, nil)
+
+highlight("PreProc", sjaddow14, nil, magenta, nil, "NONE", nil)
+highlight("Include", sjaddow15, nil, cyan, nil, nil, nil)
+highlight("Define", sjaddow13, nil, blue, nil, nil, nil)
+highlight("Macro", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("PreCondit", sjaddow11, nil, yellow, nil, "NONE", nil)
+
+highlight("Type", sjaddow09, nil, red, nil, "NONE", nil)
+highlight("StorageClass", sjaddow09, nil, red, nil, nil, nil)
+highlight("Structure", sjaddow09, nil, red, nil, nil, nil)
+highlight("Typedef", sjaddow13, nil, blue, nil, nil, nil)
+
+highlight("Special", sjaddow05, nil, "NONE", nil, nil, nil)
+highlight("SpecialChar", sjaddow13, nil, blue, nil, nil, nil)
+highlight("Tag", sjaddow05, nil, nil, nil, nil, nil)
+highlight("Delimiter", sjaddow06, nil, lightWhite, nil, nil, nil)
+highlight("SpecialComment", sjaddow05, nil, white, nil, "italic", nil)
+highlight("Todo", sjaddow13, "NONE", blue, "NONE", nil, nil)
+
+-- ___LANGUAGES SPECIFIC___
+
+-- CFG
+highlight("CfgValues", sjaddow13, nil, nil, blue, nil, nil)
+highlight("CfgSection", sjaddow12, nil, nil, green, nil, nil)
+
+-- CSS
+highlight("cssAttr", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("cssAttributeSelector", sjaddow13, nil, nil, blue, nil, nil)
+highlight("cssBraces", sjaddow06, nil, lightWhite, nil, nil, nil)
+highlight("cssClassName", sjaddow15, nil, nil, cyan, nil, nil)
+highlight("cssClassNameDot", sjaddow08, nil, nil, red, nil, nil)
+highlight("cssColor", sjaddow06, nil, nil, lightWhite, nil, nil)
+highlight("cssDefinition", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("cssFontAttr", sjaddow14, nil, nil, magenta, nil, nil)
+highlight("cssImportant", sjaddow08, nil, nil, red, nil, nil)
+highlight("cssMediaType", sjaddow12, nil, nil, green, nil, nil)
+highlight("cssProp", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("cssPseudoClass", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("cssPseudoClassId", sjaddow13, nil, nil, blue, nil, nil)
+highlight("cssSelectorOp", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("cssTagName", sjaddow13, nil, nil, blue, nil, nil)
+highlight("cssUnitDecorators", sjaddow10, nil, nil, red, nil, nil)
+highlight("cssVendor", sjaddow11, nil, yellow, nil, nil, nil)
+
+-- GO
+highlight("goBuiltins", sjaddow15, nil, nil, cyan, nil, nil)
+highlight("goConstants", sjaddow11, nil, yellow, nil, nil, nil)
+
+-- HTML
+highlight("htmlLink", sjaddow13, nil, nil, nil, "NONE", "NONE")
+highlight("htmlArg", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("htmlBold", nil, nil, nil, nil, "bold", nil)
+highlight("htmlEndTag", sjaddow13, nil, nil, blue, nil, nil)
+highlight("htmlH1", sjaddow09, nil, nil, red, nil, nil)
+highlight("htmlH2", sjaddow09, nil, nil, red, nil, nil)
+highlight("htmlH3", sjaddow09, nil, nil, red, nil, nil)
+highlight("htmlH4", sjaddow09, nil, nil, red, nil, nil)
+highlight("htmlH5", sjaddow09, nil, nil, red, nil, nil)
+highlight("htmlH6", sjaddow09, nil, nil, red, nil, nil)
+highlight("htmlItalic", nil, nil, nil, nil, "italic", nil)
+highlight("htmlSpecialChar", sjaddow13, nil, blue, nil, nil, nil)
+highlight("htmlSpecialTagName", sjaddow09, nil, nil, red, nil, nil)
+highlight("htmlTag", sjaddow13, nil, nil, blue, nil, nil)
+highlight("htmlTagN", sjaddow13, nil, nil, blue, nil, nil)
+highlight("htmlTagName", sjaddow13, nil, nil, blue, nil, nil)
+highlight("htmlTitle", sjaddow10, nil, nil, red, nil, nil)
+
+-- JAVA
+highlight("javaCommentTitle", sjaddow03, nil, lightBlack, nil, "italic", nil)
+highlight("javaDocTags", sjaddow07, nil, nil, lightWhite, nil, nil)
+
+-- JAVASCRIPT
+-- ( http//github.com/pangloss/vim-javascript )
+highlight("jsGlobalNodeObjects", sjaddow08, nil, red, nil, "italic", nil)
+highlight("jsVariableDef", sjaddow06, nil, lightWhite, nil, "italic", nil)
+highlight("jsFuncArgs", sjaddow06, nil, lightWhite, nil, "italic", nil)
+highlight("jsArrowFunction", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("jsBrackets", sjaddow06, nil, lightWhite, nil, nil, nil)
+highlight("jsClassDefinition", sjaddow12, nil, nil, green, nil, nil)
+highlight("jsFuncCall", sjaddow12, nil, cyan, nil, nil, nil)
+highlight("jsFuncParens", sjaddow06, nil, lightWhite, nil, nil, nil)
+highlight("jsGlobalObjects", sjaddow08, nil, nil, red, nil, nil)
+highlight("jsNoise", sjaddow06, nil, lightWhite, nil, nil, nil)
+highlight("jsObjectProp", sjaddow15, nil, nil, cyan, nil, nil)
+highlight("jsPrototype", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("jsRegexpString", sjaddow13, nil, blue, nil, nil, nil)
+highlight("jsReturn", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("jsTemplateString", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("jsThis", sjaddow11, nil, yellow, nil, nil, nil)
+
+-- JSX
+--  ( http//github.com/mxw/vim-jsx )
+highlight("xmlTag", sjaddow13, nil, nil, blue, nil, nil)
+highlight("xmlTagName", sjaddow13, nil, nil, blue, nil, nil)
+highlight("xmlEndTag", sjaddow13, nil, nil, blue, nil, nil)
+
+-- JSON
+highlight("jsonBraces", sjaddow13, nil, nil, blue, nil, nil)
+highlight("jsonKeyword", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("jsonKeywordMatch", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("jsonNoise", sjaddow09, nil, nil, red, nil, nil)
+
+-- LATEX
+-- (  http//github.com/lervag/vimtex )
+highlight("texStatement", sjaddow12, nil, nil, green, nil, nil)
+highlight("texUrl", sjaddow13, nil, nil, blue, nil, nil)
+
+-- LESS
+--  ( http//github.com/groenewege/vim-less )
+highlight("lessAmpersand", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("lessClass", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("lessCssAttribute", sjaddow06, nil, lightWhite, nil, nil, nil)
+highlight("lessFunction", sjaddow12, nil, cyan, nil, nil, nil)
+highlight("lessVariable", sjaddow09, nil, nil, red, nil, nil)
+
+-- LUA
+highlight("luaFuncCall", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("luaLocal", sjaddow15, nil, cyan, nil, nil, nil)
+highlight("luaFuncKeyword", sjaddow14, nil, magenta, nil, nil, nil)
+highlight("luaSpecialValue", sjaddow10, nil, red, nil, nil, nil)
+highlight("luaStatement", sjaddow12, nil, green, nil, nil, nil)
+highlight("luaRepeat", sjaddow09, nil, red, nil, nil, nil)
+highlight("luaConstant", sjaddow08, nil, red, nil, nil, nil)
+
+-- MARKDOWN
+highlight("markdownUrl", sjaddow04, nil, "NONE", nil, "NONE", nil)
+highlight("markdownBlockquote", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("markdownBold", nil, nil, nil, nil, "bold", nil)
+highlight("markdownBoldDelimiter", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("markdownCode", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("markdownCodeDelimiter", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("markdownFootnote", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("markdownFootnoteDefinition", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("markdownH1", sjaddow09, nil, nil, red, nil, nil)
+highlight("markdownH2", sjaddow09, nil, nil, red, nil, nil)
+highlight("markdownH3", sjaddow09, nil, nil, red, nil, nil)
+highlight("markdownH4", sjaddow09, nil, nil, red, nil, nil)
+highlight("markdownH5", sjaddow09, nil, nil, red, nil, nil)
+highlight("markdownH6", sjaddow09, nil, nil, red, nil, nil)
+highlight("markdownHeadingDelimiter", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("markdownId", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("markdownIdDeclaration", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("markdownIdDelimiter", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("markdownItalic", nil, nil, nil, nil, "italic", nil)
+highlight("markdownItalicDelimiter", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("markdownLinkDelimiter", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("markdownLinkText", sjaddow08, nil, nil, red, nil, nil)
+highlight("markdownLinkTextDelimiter", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("markdownListMarker", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("markdownRule", sjaddow11, nil, yellow, nil, nil, nil)
+
+-- ( http//github.com/plasticboy/vim-markdown )
+highlight("mkdListItem", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("mkdCode", sjaddow12, nil, nil, green, nil, nil)
+highlight("mkdHeading", sjaddow09, nil, nil, red, nil, nil)
+highlight("mkdURL", sjaddow13, nil, nil, blue, nil, nil)
+
+-- PHP
+highlight("phpClasses", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("phpDocCustomTags", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("phpDocTags", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("phpMemberSelector", sjaddow11, nil, yellow, nil, nil, nil)
+
+-- PYTHON
+highlight("pythonBuiltin", sjaddow09, nil, red, nil, "NONE", nil)
+highlight("pythonEscape", sjaddow13, nil, blue, nil, nil, nil)
+
+-- RUST
+-- ( http//github.com/rust-lang/rust.vim )
+highlight("rustArrowCharacter", sjaddow12, nil, nil, green, nil, nil)
+
+-- SCSS
+-- ( http//github.com/cakebaker/scss-syntax.vim )
+highlight("scssVariable", sjaddow09, nil, nil, red, nil, nil)
+
+-- SHELL
+highlight("shCmdParenRegion", sjaddow06, nil, lightWhite, nil, nil, nil)
+highlight("shCmdSubRegion", sjaddow06, nil, lightWhite, nil, nil, nil)
+highlight("shDerefSimple", sjaddow13, nil, blue, nil, "NONE", nil)
+highlight("shDerefVar", sjaddow13, nil, blue, nil, "NONE", nil)
+
+-- VIM
+highlight("vimAugroup", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("vimCommand", sjaddow13, nil, nil, blue, nil, nil)
+highlight("vimFunc", sjaddow12, nil, cyan, nil, nil, nil)
+highlight("vimFunction", sjaddow12, nil, cyan, nil, nil, nil)
+highlight("vimMap", sjaddow08, nil, nil, red, nil, nil)
+highlight("vimMapRhs", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("vimNotation", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("vimOption", sjaddow15, nil, nil, cyan, nil, nil)
+highlight("vimUserFunc", sjaddow12, nil, cyan, nil, nil, nil)
+highlight("vimVar", sjaddow11, nil, nil, yellow, nil, nil)
+
+-- XML
+highlight("xmlCdataStart", sjaddow03, nil, lightBlack, nil, "bold", nil)
+highlight("xmlAttrib", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("xmlAttribPunct", sjaddow06, nil, lightWhite, nil, nil, nil)
+highlight("xmlCdata", sjaddow03, nil, lightBlack, nil, "italic", nil)
+highlight("xmlCdataCdata", sjaddow03, nil, lightBlack, nil, "bold", nil)
+highlight("xmlCdataEnd", sjaddow03, nil, lightBlack, nil, "bold", nil)
+highlight("xmlNamespace", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("xmlProcessingDelim", sjaddow11, nil, yellow, nil, nil, nil)
+
+-- YAML
+highlight("yamlBlockMappingKey", sjaddow07, nil, nil, lightWhite, nil, nil)
+highlight("yamlBool", sjaddow11, nil, yellow, nil, nil, nil)
+highlight("yamlDocumentStart", sjaddow11, nil, yellow, nil, nil, nil)
+
+-- ZSH
+highlight("zshFunction", sjaddow12, nil, cyan, nil, nil, nil)
+highlight("zshDeref", sjaddow15, nil, nil, cyan, nil, nil)
+highlight("zshVariableDef", sjaddow10, nil, nil, red, nil, nil)
+
+-- ___PLUGIN SUPPORT___
+
+-- ALE
+-- ( http//github.com/w0rp/ale )
+highlight("ALEErrorSign", sjaddow08, nil, nil, red, nil, nil)
+highlight("ALEWarningSign", sjaddow11, nil, nil, yellow, nil, nil)
+
+-- COC.NVIM
+-- ( http//github.com/neoclide/coc.nvim )
+highlight("CocErrorSign", sjaddow08, nil, nil, red, nil, nil)
+highlight("CocWarningSign", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("CocInfoSign", sjaddow13, nil, nil, blue, nil, nil)
+highlight("CocHintSign", sjaddow13, nil, nil, blue, nil, nil)
+highlight("CocCodeLens", sjaddow05, nil, nil, white, nil, nil)
+
+-- FUGITIVE
+-- ( http//github.com/tpope/vim-fugitive )
+highlight("gitcommitDiscardedFile", sjaddow08, nil, nil, red, nil, nil)
+highlight("gitcommitUntrackedFile", sjaddow08, nil, nil, red, nil, nil)
+highlight("gitcommitSelectedFile", sjaddow12, nil, nil, green, nil, nil)
+
+-- GITGUTTER
+-- ( http//github.com/airblade/vim-gitgutter )
+highlight("GitGutterAdd", sjaddow12, nil, nil, green, nil, nil)
+highlight("GitGutterChange", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("GitGutterChangeDelete", sjaddow09, nil, nil, red, nil, nil)
+highlight("GitGutterDelete", sjaddow08, nil, nil, red, nil, nil)
+
+-- NERDTREE
+-- ( http//github.com/scrooloose/nerdtree )
+highlight("NERDTreeExecFile", sjaddow15, nil, nil, cyan, nil, nil)
+highlight("NERDTreeDirSlash", sjaddow15, nil, cyan, nil, nil, nil)
+highlight("NERDTreeHelp", sjaddow03, nil, lightBlack, nil, "italic", nil)
+
+-- SIGNIFY
+-- ( http//github.com/mhinz/vim-signify )
+highlight("SignifyLineAdd", sjaddow12, nil, nil, green, nil, nil)
+highlight("SignifySignAdd", sjaddow12, nil, nil, green, nil, nil)
+highlight("SignifyLineChange", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("SignifyLineChangeDelete", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("SignifySignChange", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("SignifySignChangeDelete", sjaddow11, nil, nil, yellow, nil, nil)
+highlight("SignifyLineDelete", sjaddow08, nil, nil, red, nil, nil)
+highlight("SignifyLineDeleteFirstLine", sjaddow08, nil, nil, red, nil, nil)
+highlight("SignifySignDelete", sjaddow08, nil, nil, red, nil, nil)
+highlight("SignifyDeleteFirstLine", sjaddow08, nil, nil, red, nil, nil)
+
+-- TAGBAR
+-- ( http//github.com/majutsushi/tagbar )
+highlight("TagbarComment", sjaddow03, nil, lightBlack, nil, "italic", nil)
+highlight("TagbarKind", sjaddow12, nil, cyan, nil, nil, nil)
+
+-- VIM-PLUG
+-- ( http//github.com/junegunn/vim-plug )
+highlight("plugDeleted", sjaddow09, nil, nil, red, nil, nil)
+
+-- VIM-SNEAK
+-- ( http//github.com/justinmk/vim-sneak )
+highlight("Sneak", sjaddow00, sjaddow12, black, cyan, nil, nil)
+
+vim.cmd("syntax on")
