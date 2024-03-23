@@ -25,6 +25,7 @@ opt.smartcase = true
 
 -- cursor line
 opt.cursorline = true
+-- vim.api.nvim_set_option("clipboard", "unnamed")
 
 -- appearance
 
