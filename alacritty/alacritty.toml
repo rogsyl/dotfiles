@@ -11,6 +11,7 @@ family = "JetBrainsMono Nerd Font"
 
 [window]
 decorations = "none"
+option_as_alt = "OnlyRight"
 
 [window.padding]
 x = 7
