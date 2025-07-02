@@ -1,18 +1,20 @@
 -- A small automated session manager for Neovim
 -- https://github.com/rmagatti/auto-session
+-- Files saved in: /Users/roger/.local/share/nvim/sessions/
+-- To find path, in NeoVim do:  :echo stdpath("data") .. "/session/"
 return {
 	"rmagatti/auto-session",
-	config = function()
-		local auto_session = require("auto-session")
-
-		auto_session.setup({
-			auto_restore_enabled = false,
-			auto_session_suppress_dirs = { "~/", "~/Dev/", "~/Downloads", "~/Documents", "~/Desktop/" },
-		})
-
-		local keymap = vim.keymap
-
-		keymap.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" }) -- restore last workspace session for current directory
-		keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for auto session root dir" }) -- save workspace session for current working directory
-	end,
+	lazy = false,
+	opts = {
+		suppressed_dirs = { "~/", "~/Dev/", "~/Downloads", "~/Documents", "~/Desktop/" },
+		buftypes_to_ignore = {},
+		load_on_setup = true,
+		theme_conf = { border = true },
+		previewer = false,
+	},
+	keys = {
+		{ "<leader>ls", "<cmd>SessionSearch<CR>", desc = "Search session" },
+		-- { "<leader>wr", "<cmd>SessionRestore<CR>", desc = "Restore session for cwd" },
+		-- { "<leader>ws", "<cmd>SessionSave<CR>", desc = "Save session for cwd" },
+	},
 }

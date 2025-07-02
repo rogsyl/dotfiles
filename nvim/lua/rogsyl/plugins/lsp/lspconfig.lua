@@ -1,9 +1,10 @@
 -- Quickstart configs for Nvim LSP
--- https://github.com/neovim/nvim-lspconfig
+---[[ - ]] https://github.com/neovim/nvim-lspconfig
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
+		"nvim-lua/plenary.nvim",
 		-- Automatically install LSPs to stdpath for NeoVim
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
@@ -26,7 +27,7 @@ return {
 		local keymap = vim.keymap -- for conciseness
 
 		local opts = { noremap = true, silent = true }
-		local on_attach = function(client, bufnr)
+		local on_attach = function(_, bufnr)
 			opts.buffer = bufnr
 
 			-- set keybinds
@@ -62,6 +63,7 @@ return {
 
 			opts.desc = "Go to next diagnostic"
 			keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+			-- keymap.set("n", "]d", "<CMD>vim.diagnostic.jump({ count = 1, float = true })<CR>", opts) -- jump to next diagnostic in buffer
 
 			opts.desc = "Show documentation for what is under cursor"
 			keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
@@ -171,28 +173,14 @@ return {
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-			settings = { -- custom settings for lua
-				Lua = {
-					-- make the language server recognize "vim" global
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						-- make language server aware of runtime files
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
-						},
-					},
-				},
-			},
+			-- Settings, see .../after/ftplugin/lua.lua
 		})
 
 		--autocmd("BufWritePre", {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			pattern = "*.go",
 			callback = function()
-				local params = vim.lsp.util.make_range_params()
+				local params = vim.lsp.util.make_range_params(0, "utf-8")
 				params.context = { only = { "source.organizeImports" } }
 				-- buf_request_sync defaults to a 1000ms timeout. Depending on your
 				-- machine and codebase, you may want longer. Add an additional

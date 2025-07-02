@@ -13,6 +13,10 @@
 -- nvim-nio - A library for asynchronous IO in Neovim
 -- https://github.com/nvim-neotest/nvim-nio
 
+-- testprint = function()
+-- 	print("Roger var her...")
+-- end
+
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
@@ -40,7 +44,19 @@ return {
 		dap.listeners.before.event_exited.dapui_config = function()
 			dapui.close()
 		end
-		vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, { desc = "Debug toggle breakpoint" })
-		vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "Debug continue" })
+
+		-- vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, { desc = "Debug toggle breakpoint" })
+		-- vim.keymap.set("n", "<Leader>di", dap.step_into, { desc = "Debug step into" })
+		-- vim.keymap.set("n", "<Leader>do", dap.step_over, { desc = "Debug step over" })
+		-- vim.keymap.set("n", "<Leader>du", dap.step_out, { desc = "Debug step out" })
+		-- vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "Debug continue" })
+
+		vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "Debug toggle breakpoint" })
+		vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Debug step into" })
+		vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Debug step over" })
+		vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Debug step out" })
+		vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug continue" })
+
+		-- vim.keymap.set("n", "<F6>", testprint, { desc = "Print test message" })
 	end,
 }

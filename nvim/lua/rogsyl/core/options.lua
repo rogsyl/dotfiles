@@ -60,3 +60,33 @@ opt.swapfile = false
 
 opt.scrolloff = 5
 opt.scrolljump = -50
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
+
+-- vim.opt.formatoptions = "jcroqlnt"
+-- vim.opt.textwidth = 80
+
+-- Turn on word-wrap for markdown files
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = { "*.md" },
+	callback = function()
+		vim.opt.colorcolumn = "80"
+		vim.opt.textwidth = 80
+		vim.opt.wrap = true
+		vim.opt.linebreak = true
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
+	pattern = { "*.md" },
+	callback = function()
+		vim.opt.colorcolumn = "120"
+		vim.opt.textwidth = 120
+		vim.opt.wrap = false
+		vim.opt.linebreak = false
+	end,
+})
