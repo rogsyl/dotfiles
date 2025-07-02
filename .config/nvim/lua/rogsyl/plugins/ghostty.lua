@@ -5,6 +5,9 @@
 
 return {
 	"ghostty",
-	dir = "/Applications/Ghostty.app/Contents/Resources/vim/vimfiles/",
+	enabled = false,
+	-- dir = "/Applications/Ghostty.app/Contents/Resources/vim/vimfiles/",
+	-- TODO: Where is this directory on Linux?
+	-- dir = "/Applications/Ghostty.app/Contents/Resources/vim/vimfiles/",
 	lazy = false,
 }
