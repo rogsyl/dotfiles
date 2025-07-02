@@ -3,8 +3,8 @@
 size = 16
 
 [font.normal]
-#family = "JetBrainsMono Nerd Font"
-family = "DankMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
+#family = "DankMono Nerd Font"
 
 [colors]
 #background = "#14161b"
