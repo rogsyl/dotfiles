@@ -5,7 +5,7 @@ if uname | grep -q Linux; then
 	export EDITOR=nvim
 	export PATH=$HOME/go/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/Users/roger/code/flutter/bin:$PATH
 fi
-if uname | grep -q Darvin; then
+if uname | grep -q Darwin; then
 	export EDITOR=/opt/homebrew/bin/nvim
 	export PATH=$HOME/go/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/Users/roger/code/flutter/bin:$PATH
 	export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
@@ -26,7 +26,7 @@ alias timg='timg -p k'
 
 eval "$(starship init zsh)"
 
-if uname | grep -q Darvin; then
+if uname | grep -q Darwin; then
     source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
@@ -39,7 +39,7 @@ eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-if uname | grep -q Darvin; then
+if uname | grep -q Darwin; then
     fpath=(/Users/roger/.docker/completions $fpath)
     autoload -Uz compinit
     compinit
@@ -87,7 +87,7 @@ if uname | grep -q Linux; then
 	# bindkey -M viins 'ß' sesh-sessions
 fi
 
-if uname | grep -q Darvin; then
+if uname | grep -q Darwin; then
 # Bind the 'ß' key, which is the same as 'ALT+s' on Mac, to the sesh-sessions function
 	zle     -N             sesh-sessions
 	bindkey -M emacs 'ß' sesh-sessions
