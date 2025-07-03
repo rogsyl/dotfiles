@@ -1,0 +1,84 @@
+
+#================================================================================
+#
+# Configuration-sesssions
+#
+
+[[session]]
+name = "borders config"
+path = "~/.config/borders"
+startup_command = "nvim bordersrc"
+
+[[session]]
+name = "dotfiles"
+path = "~/git/dotfiles"
+startup_command = ""
+
+[[session]]
+name = "sesh config"
+path = "~/.config/sesh"
+startup_command = "nvim sesh.toml"
+
+[[session]]
+name = "tmux config"
+path = "~/"
+startup_command = "nvim .tmux.conf"
+
+[[session]]
+name = "zsh config"
+path = "~/"
+startup_command = "nvim .zshrc"
+
+#================================================================================
+#
+# Customer-sesssions
+#
+
+[[session]]
+name = "norinsect"
+path = "~/"
+
+#================================================================================
+#
+# Server-sesssions
+#
+
+[[session]]
+name = "rssrv2"
+path = "~/"
+
+#================================================================================
+#
+# Programming-project sesssions
+#
+
+[[session]]
+name = "goscore"
+path = "~/git/goscore"
+startup_command = "nvim"
+
+[[session]]
+name = "goscore 2"
+path = "~/git/goscore2"
+startup_command = "nvim"
+
+[[session]]
+name = "goscore 3"
+path = "~/git/goscore3"
+startup_command = "nvim"
+
+[[session]]
+name = "gosnippets"
+path = "~/git/gosnippets"
+startup_command = "nvim"
+
+[[session]]
+name = "seter-solgt"
+path = "~/git/seter-solgt"
+startup_command = "nvim"
+
+[[session]]
+name = "www_inro_net"
+path = "~/git/www_inro_net"
+startup_command = "~/bin/prj_www_inro_net"
+
