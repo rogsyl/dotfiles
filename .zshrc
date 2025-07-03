@@ -94,3 +94,7 @@ if uname | grep -q Darwin; then
 	bindkey -M vicmd 'ß' sesh-sessions
 	bindkey -M viins 'ß' sesh-sessions
 fi
+
+sleep 0.25
+fastfetch
+
