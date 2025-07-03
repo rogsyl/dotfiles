@@ -67,6 +67,34 @@ function t() {
   fi
 }
 
+function tt() {
+  if [[ $# -eq 0 ]]; then
+    tmux ls > /dev/null 2>&1
+    local exit_code=$?
+
+    if [[ $exit_code -eq 0 ]]; then
+      # If tmux is running, attach
+      tmux a
+    else
+      # If tmux is not running, start a new session
+      tmux new-session -s sjaddowland
+    fi
+  elif [[ $# -eq 1 ]]; then
+    tmux ls | grep "$1" > /dev/null 2>&1
+    local exit_code=$?
+
+    if [[ $exit_code -eq 0 ]]; then
+      # If tmux is running, attach
+      tmux attach -t "$1"
+    else
+      # If tmux is not running, start a new session
+      tmux new-session -s "$1"
+    fi
+  else
+    echo "Too many arguments, expected 0 or 1"
+  fi
+}
+
 function sesh-sessions() {
   {
     exec </dev/tty
@@ -81,18 +109,18 @@ function sesh-sessions() {
 
 if uname | grep -q Linux; then
 	# TODO:
-	#zle     -N             sesh-sessions
-	# bindkey -M emacs 'ß' sesh-sessions
-	# bindkey -M vicmd 'ß' sesh-sessions
-	# bindkey -M viins 'ß' sesh-sessions
+	zle     -N             sesh-sessions
+	#bindkey -M emacs 's' sesh-sessions
+	bindkey -M vicmd 's' sesh-sessions
+	#bindkey -M viins 's' sesh-sessions
 fi
 
 if uname | grep -q Darwin; then
 # Bind the 'ß' key, which is the same as 'ALT+s' on Mac, to the sesh-sessions function
 	zle     -N             sesh-sessions
-	bindkey -M emacs 'ß' sesh-sessions
+	#bindkey -M emacs 'ß' sesh-sessions
 	bindkey -M vicmd 'ß' sesh-sessions
-	bindkey -M viins 'ß' sesh-sessions
+	#bindkey -M viins 'ß' sesh-sessions
 fi
 
 sleep 0.25
