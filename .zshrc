@@ -5,24 +5,19 @@ if uname | grep -q Linux; then
 	export EDITOR=nvim
 	export PATH=$HOME/go/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/Users/roger/code/flutter/bin:$PATH
 fi
-if uname | grep -q Darvin; then
+if uname | grep -q Darwin; then
 	export EDITOR=/opt/homebrew/bin/nvim
 	export PATH=$HOME/go/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/Users/roger/code/flutter/bin:$PATH
 	export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 fi
 alias ls='ls -GFh'
-# MAC ONLY, MOVED UP export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
-#export GROQ_API_KEY="din-api-nøkkel-her"
 export LANG=nb_NO.UTF-8
-
-# MAC ONLY, MOVED UP export PATH=$HOME/go/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/Users/roger/code/flutter/bin:$PATH
-#source ~/.zsh/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 alias vim='nvim'
 alias v='nvim'
 alias sunvim='sudo -E -s $(which nvim)'
 #alias ls='colorls -lA --sd'
-# TODO:
+# TODO:  
 alias cd-goscore3='cd "/Users/roger/Google Drive/Min disk/GoProjects/src/goscore3"'
 # TODO:
 alias cd-notater='cd "/Users/roger/Library/CloudStorage/SynologyDrive-Roger/Notater"'
@@ -30,8 +25,11 @@ alias ssh='TERM=xterm-256color ssh'
 alias timg='timg -p k'
 
 eval "$(starship init zsh)"
-# TODO: MAC ONLY source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# TODO: MAC ONLY source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+if uname | grep -q Darwin; then
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 set -o vi
 
@@ -40,14 +38,12 @@ eval "$(zoxide init zsh)"
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-# Start Zellij automatically
-#eval "$(zellij setup --generate-auto-start zsh)"
-
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-# TODO: MAC ONLY
-fpath=(/Users/roger/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
+if uname | grep -q Darwin; then
+    fpath=(/Users/roger/.docker/completions $fpath)
+    autoload -Uz compinit
+    compinit
+fi
 # End of Docker CLI completions
 
 function y() {
@@ -91,7 +87,7 @@ if uname | grep -q Linux; then
 	# bindkey -M viins 'ß' sesh-sessions
 fi
 
-if uname | grep -q Darvin; then
+if uname | grep -q Darwin; then
 # Bind the 'ß' key, which is the same as 'ALT+s' on Mac, to the sesh-sessions function
 	zle     -N             sesh-sessions
 	bindkey -M emacs 'ß' sesh-sessions
