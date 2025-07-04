@@ -124,6 +124,6 @@ if uname | grep -q Darwin; then
 	#bindkey -M viins 'ß' sesh-sessions
 fi
 
-sleep 0.25
-fastfetch
+#sleep 0.25
+#fastfetch
 
