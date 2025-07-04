@@ -45,6 +45,7 @@ brew install $BREW_DRY_RUN automake \
                            cmake \
                            composer \
                            exiftool \
+                           fastfetch \
                            fd \
                            felixkratz/formulae/borders \
                            fzf \
