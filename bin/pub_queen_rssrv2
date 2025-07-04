@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+#
+# Roger Sylte <roger@inro.net> - 2024
+#
+# Publish new or updated files on the webserver of the rssrv2 web server
+#
+# TODO: Script may fail on scp if destination exists and group don't have write access
+#
+# CHANGELOG:
+#
+# - 2024.01.12 - Initial version
+#
+
+handle_error() {
+    echo "An error occurred on line $1"
+    exit 1
+}
+
+trap 'handle_error $LINENO' ERR
+
+if [ $# -ne 2 ] ; then
+    echo "Invalid number of arguments, expected 2, got $#"
+    echo ""
+    echo "Usage: pub_queen_rssrv2 FileName* ovingsfiler"
+    echo "Usage: pub_queen_rssrv2 index.php ."
+    exit 2
+fi
+
+# if [ -z "${SSH_AGENT_PID}" ]; then
+#     echo "Starting SSH agent..."
+#     eval $(ssh-agent -s)
+# fi
+
+echo "Publishing files..."
+scp $1 rssrv2:/var/www/inro.net/qpk/$2 
+ssh pi@rssrv2 "sudo chmod g+w /var/www/inro.net/qpk/$2/$1"
+ssh pi@rssrv2 "sudo chown www-data:www-data /var/www/inro.net/qpk/$2/$1"

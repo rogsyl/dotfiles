@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+cat << EOF
+title::$*
+:r:202503
+#tag::20250314-øvingshelg2025-1
+gs3::true
+song::$*
+Øv:Tutti:TUTTI
+#Øv:Solo:SOLO
+#Øv:Solo 1:SOLO1
+#Øv:Solo 2:SOLO2
+#Øv:Solo 3:SOLO3
+Øv:Sopran:SOPRAN
+#Øv:Sopran 1:SOPRAN1
+#Øv:Sopran 2:SOPRAN2
+#Øv:Mezzo:MEZZO
+Øv:Alt:ALT
+#Øv:Alt 1:ALT1
+#Øv:Alt 2:ALT2
+Øv:Tenor:TENOR
+Øv:Bass:BASS
+#Øv:Karer:KARER
+mp3:Tutti:TUTTI
+#mp3:Solo:SOLO
+#mp3:Solo 1:SOLO1
+#mp3:Solo 2:SOLO2
+#mp3:Solo 3:SOLO3
+mp3:Sopran:SOPRAN
+#mp3:Sopran 1:SOPRAN1
+#mp3:Sopran 2:SOPRAN2
+#mp3:Mezzo:MEZZO
+mp3:Alt:ALT
+#mp3:Alt 1:ALT1
+#mp3:Alt 2:ALT2
+mp3:Tenor:TENOR
+mp3:Bass:BASS
+#mp3:Karer:KARER
+pdf:NOTE:ovingsfiler/$*.pdf
+#pdf:TEKST:ovingsfiler/$*-TEKST.pdf
+EOF

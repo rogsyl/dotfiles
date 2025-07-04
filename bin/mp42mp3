@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+#
+# ©2023 Roger Sylte - roger@inro.net
+#
+# Convert mp4-files to mp3 using ffmpeg
+#
+#  * 14.09.2023   v0.1   Initial version
+#
+
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+
+for f in $* ; do
+  echo "Processing ${f}..."
+  OUTFILE=${f%.*}.mp3
+  if [ ! -f "$OUTFILE" ]
+  then
+    #echo "$OUTFILE"
+    ~/bin/ffmpeg -i "$f" -f mp3 -q:a 5 -vn "${f%.*}.mp3"
+  fi
+done
+
+IFS=$SAVEIFS

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+#
+# Script to set up a tmux session for the prj_www_inro_net project.
+#
+# (C) 2025 - Roger Sylte <rsylte@outlook.com> - MIT License
+#
+# 27.06.2025 - Initial version
+#
+
+HEIGHT=$(tmux display -p '#{window_height}')
+
+# We want the lower pane to be 1/5th of the height of the window, and since the
+# pane initially is 1/2 of the height, we need to calculate the difference
+# between the initial height and the desired height.
+DELTA_HEIGHT=$(expr \( $HEIGHT / 2 \) - \( $HEIGHT / 5 \) )
+
+tmux split-window -v
+tmux resize-pane -D $DELTA_HEIGHT
+tmux send-keys "hugo server -D" Enter
+tmux select-pane -t 1
+
+# The URL may fail to load, but should update and load when the Hugo server is
+# up and running.
+open \"http://localhost:1313/\"
+
+tmux send-keys "nvim" Enter
+

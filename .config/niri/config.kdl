@@ -600,7 +600,7 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 
     // APPLICATIONS
-    Mod3+1 { spawn "~/git/dotfiles/new-window.sh" "1Password" "1password"; }
-    Mod3+B { spawn "~/git/dotfiles/new-window.sh" "brave-browser" "brave --new-window"; }
-    Mod3+G { spawn "~/git/dotfiles/new-window.sh" "org.telegram.desktop" "Telegram"; }
+    Mod3+1 { spawn "~/bin/new-window.sh" "1Password" "1password"; }
+    Mod3+B { spawn "~/bin/new-window.sh" "brave-browser" "brave --new-window"; }
+    Mod3+G { spawn "~/bin/new-window.sh" "org.telegram.desktop" "Telegram"; }
 }
