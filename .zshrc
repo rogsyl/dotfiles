@@ -3,7 +3,8 @@ PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_c
 export PATH=/usr/local/bin:$PATH
 if uname | grep -q Linux; then
 	export EDITOR=nvim
-	export PATH=$HOME/go/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/Users/roger/code/flutter/bin:$PATH
+  export PATH=$HOME/go/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/Users/roger/code/flutter/bin:$PATH
+  XKB_DEFAULT_OPTIONS="caps:hyper"
 fi
 if uname | grep -q Darwin; then
 	export EDITOR=/opt/homebrew/bin/nvim
