@@ -51,6 +51,7 @@ brew install $BREW_DRY_RUN automake \
                            fzf \
                            git \
                            golang \
+                           gum \
                            homebank \
                            html-xml-utils \
                            html2text \
@@ -109,6 +110,7 @@ brew install $BREW_DRY_RUN --cask aerospace \
                                   julia \
                                   julia-app \
                                   qlmarkdown \
+                                  rustdesk \
                                   shortcat \
                                   syntax-highlight
 

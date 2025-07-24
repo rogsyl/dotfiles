@@ -43,4 +43,9 @@
 # resize-overlay-duration = 4s 200ms
 
 window-decoration = none
+#theme = dark:tokyonight_night,light:tokyonight-day
+theme = tokyonight_night
+
+#background-opacity = 0.8
+#background-blur-radius = 10
 

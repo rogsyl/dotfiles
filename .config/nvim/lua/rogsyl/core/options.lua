@@ -34,6 +34,9 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
+--vim.api.nvim_set_hl(0, "Normal", { bg = "none" }) -- make background transparent
+--vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" }) -- make background transparent for non-current windows
+--vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" }) -- make end of buffer transparent
 
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position

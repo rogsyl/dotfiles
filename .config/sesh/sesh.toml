@@ -31,7 +31,15 @@ startup_command = "nvim .zshrc"
 
 #================================================================================
 #
-# Customer-sesssions
+# Personal-sessions
+#
+[[session]]
+name = "timeføring"
+path = "~/RS-Dokumenter/Timeføring"
+
+#================================================================================
+#
+# Customer-sessions
 #
 
 [[session]]

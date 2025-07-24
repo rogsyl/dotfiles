@@ -16,6 +16,7 @@ sudo pacman -Syu --noconfirm 7zip \
                              fzf \
                              git \
                              git-zsh-completion \
+                             gum \
                              hugo \
                              imagemagick \
                              jq \
@@ -60,7 +61,10 @@ makepkg -si
 #================================================================================
 # yay
 #
-yay -S brave-bin 1password
+yay -S --noconfirm \
+    1password \
+    brave-bin \
+    rustdesk
 
 #================================================================================
 # Go

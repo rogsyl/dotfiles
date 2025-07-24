@@ -25,6 +25,27 @@ alias cd-notater='cd "/Users/roger/Library/CloudStorage/SynologyDrive-Roger/Nota
 alias ssh='TERM=xterm-256color ssh'
 alias timg='timg -p k'
 
+alias ls='eza -lh --group-directories-first --icons=auto'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+
+# Directories
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Tools
+alias n='nvim'
+alias g='git'
+alias d='docker'
+
+# Git
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gcad='git commit -a --amend'
+
 eval "$(starship init zsh)"
 
 if uname | grep -q Darwin; then
